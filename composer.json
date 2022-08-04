@@ -25,6 +25,7 @@
   },
   "extra": {
     "installer-paths": {
+      "wordpress-install-dir": "wordpress",
       "wordpress/wp-content/plugins/{$name}": [
         "type:wordpress-plugin"
       ],
@@ -35,5 +36,11 @@
         "type:wordpress-muplugin"
       ]
     }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "cp wordpress/index.php ./index.php",
+      "sed -i \"s/\\/wp-blog-header/\\/wordpress\\/wp-blog-header/g\" index.php"
+    ]
   }
 }
